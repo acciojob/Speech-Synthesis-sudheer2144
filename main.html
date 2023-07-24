@@ -38,7 +38,38 @@
 
   //Your code goes here
 
-	msg.text=
+	let addOption = `<option value="">Select A Voice</option>`;
+
+    voices.map((voice,i)=>{
+        addOption+=`<option value="${voice}" id="${i}">${voice}</option>`
+    });
+
+    voicesDropdown.innerHTML=addOption;
+
+
+
+    speakButton.addEventListener("click",()=>{
+
+        let language = voicesDropdown.value;
+
+        let rate = options[0].value;
+
+        let pitch = options[1].value;
+
+        let text = options[2].value;
+
+        msg.pitch=pitch;
+        msg.rate=rate;
+        msg.text=text;
+        msg.lang=language;
+
+        speaker.speak(msg);
+
+    });
+
+    stopButton.addEventListener("click",()=>{
+        speaker.cancel();
+    });
 	
 </script>
 
